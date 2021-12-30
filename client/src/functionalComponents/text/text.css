@@ -1,0 +1,13 @@
+@import url("../../constants.css");
+
+.textBold {
+    font-weight: bold;
+}
+
+.textLink {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+.textLink:hover {
+    cursor: pointer;
+}

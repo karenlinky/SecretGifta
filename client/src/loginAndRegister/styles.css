@@ -1,0 +1,20 @@
+.loginRegisterCardContainer {
+    margin: auto;
+    width: 90%;
+}
+
+.cardHeader {
+    font-size: x-large;
+}
+
+@media (min-width: 600px) {
+    .loginRegisterCardContainer {
+        width: 60%;
+    }
+}
+
+@media (min-width: 992px) {
+    .loginRegisterCardContainer {
+        width: 35%;
+    }
+}

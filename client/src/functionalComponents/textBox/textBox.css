@@ -1,0 +1,12 @@
+@import url("../../constants.css");
+
+.textBox {
+    border-radius: 10px;
+    padding: 10px 10px;
+    font-size: large;
+    border: none;
+    /* border-right: 1px solid var(--primary-color); */
+    border-bottom: 1px solid var(--primary-color);
+    outline: none;
+    color: var(--primary-color);
+}

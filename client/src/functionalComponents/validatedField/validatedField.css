@@ -1,0 +1,10 @@
+.fieldFullWidth{
+    width: 100%
+}
+
+.validatedFieldError{
+    color: rgb(197, 0, 0);
+    font-weight: lighter;
+    font-size: small;
+    margin-top: 3px;
+}
