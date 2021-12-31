@@ -8,30 +8,42 @@ import TextBox from "../functionalComponents/textBox/TextBox";
 import Button from "../functionalComponents/button/Button"
 import { messages } from './messages'
 
-const loginSchema = Yup.object({
-    username: Yup.string().trim().required(messages.loginUsernameRequired),
-    password: Yup.string().trim().required(messages.loginPasswordRequired),
+const registerSchema = Yup.object({
+    username: Yup.string()
+        .trim()
+        .min(5, messages.registerUsernameRequired)
+        .max(50, messages.registerUsernameRequired)
+        .required(messages.registerUsernameRequired),
+    password: Yup.string()
+        .min(7, messages.registerPasswordRequired)
+        .max(250, messages.registerUsernameRequired)
+        .matches(/^(?!.* )(?=.*\d)(?=.*[A-Za-z]).*$/, messages.registerPasswordRequired)
+        .required(messages.registerPasswordRequired),
+    confirmPassword: Yup.string()
+        .required(messages.registerConfirmPasswordRequired)
+        .equals([Yup.ref('password')], messages.registerConfirmPassword),
 })
 
-const Login = () => {
+const Register = () => {
     const initialValues = {
         username: '',
         password: '',
+        confirmPassword: '',
     }
 
-    const login = ({ username, password }) => {
-        // console.log("Logging in with " + username + " and " + password);
+    const register = ({ username, password, confirmPassword }) => {
+        console.log("Registering with " + username + ", " + password + " and " + confirmPassword);
     }
 
     return (
         <>
             <div className="cardSection cardHeader">
-                Login
+                Register
             </div>
             <Formik
                 initialValues={initialValues}
-                validationSchema={loginSchema}
-                onSubmit={login}
+                validationSchema={registerSchema}
+                onSubmit={register}
             >
                 <Form>
                     <div className="cardSection">
@@ -54,10 +66,20 @@ const Login = () => {
                         />
                     </div>
                     <div className="cardSection">
-                        <Button type="submit" className="buttonPrimary">Login</Button>
+                        <Text className="textBold">Confirm Password</Text>
+                        <ValidatedField
+                            as={TextBox}
+                            name={"confirmPassword"}
+                            placeholder={"re-type password"}
+                            className={"fieldFullWidth"}
+                            type={"password"}
+                        />
                     </div>
                     <div className="cardSection">
-                        <Text>Doesn't have an account? </Text><TextLink className="textBold" to="/register">Create one</TextLink>
+                        <Button type="submit" className="buttonPrimary">Register</Button>
+                    </div>
+                    <div className="cardSection">
+                        <Text>Already have an account? </Text><TextLink className="textBold" to="/login">Login here</TextLink>
                     </div>
                 </Form>
             </Formik>
@@ -65,4 +87,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Register

@@ -11,7 +11,8 @@ const ValidatedField = ({ name, ...props }) => {
                 {...props}>
             </Field>
             <ErrorMessage
-             name={name}>
+                name={name}
+            >
                 { msg => <ValidatedFieldError>{msg}</ValidatedFieldError> }
             </ErrorMessage>
         </>

@@ -7,4 +7,6 @@
     font-weight: lighter;
     font-size: small;
     margin-top: 3px;
+    white-space: pre-wrap;
+    padding: 0 10px;
 }
