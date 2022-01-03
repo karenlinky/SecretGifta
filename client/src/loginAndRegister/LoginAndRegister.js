@@ -5,11 +5,14 @@ import "./styles.css"
 
 const LoginAndRegister = ({ innerComponent }) => {
     return (
-        <div className="loginRegisterCardContainer">
-            <Card>
-                {innerComponent}
-            </Card>
-        </div>
+        <>
+            <div className="loginRegisterSpace"/>
+            <div className="loginRegisterCardContainer">
+                <Card>
+                    {innerComponent}
+                </Card>
+            </div>
+        </>
     )
 }
 

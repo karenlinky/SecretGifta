@@ -1,4 +1,5 @@
-import React from "react"
+import { useContext } from 'react'
+import { AppContext } from '../AppContext'
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import ValidatedField from "../functionalComponents/validatedField/ValidatedField";
@@ -31,8 +32,15 @@ const Register = () => {
         confirmPassword: '',
     }
 
+    const { setOpenModal, setModalContent } = useContext(AppContext);
+
     const register = ({ username, password, confirmPassword }) => {
         console.log("Registering with " + username + ", " + password + " and " + confirmPassword);
+        fetch("/register").then(async response => {
+            const data = await response.json()
+            setOpenModal(true);
+            setModalContent("This username is already taken.");
+        })
     }
 
     return (
@@ -42,7 +50,7 @@ const Register = () => {
             </div>
             <Formik
                 initialValues={initialValues}
-                validationSchema={registerSchema}
+                // validationSchema={registerSchema}
                 onSubmit={register}
             >
                 <Form>
