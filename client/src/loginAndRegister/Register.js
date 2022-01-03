@@ -8,6 +8,7 @@ import TextLink from "../functionalComponents/text/TextLink";
 import TextBox from "../functionalComponents/textBox/TextBox";
 import Button from "../functionalComponents/button/Button"
 import { messages } from './messages'
+import { modalConstants } from '../functionalComponents/modal/modalConstants'
 
 const registerSchema = Yup.object({
     username: Yup.string()
@@ -32,13 +33,14 @@ const Register = () => {
         confirmPassword: '',
     }
 
-    const { setOpenModal, setModalContent } = useContext(AppContext);
+    const { setOpenModal, setModalType, setModalContent } = useContext(AppContext);
 
     const register = ({ username, password, confirmPassword }) => {
         console.log("Registering with " + username + ", " + password + " and " + confirmPassword);
         fetch("/register").then(async response => {
             const data = await response.json()
             setOpenModal(true);
+            setModalType(modalConstants.ERROR);
             setModalContent("This username is already taken.");
         })
     }
