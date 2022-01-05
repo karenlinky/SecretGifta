@@ -2,6 +2,10 @@ from helper.sql_helper import SqlHelper
 from queries.login_system_queries import LoginSystemQueries
 import bcrypt
 
+# from flask_jwt_extended import create_access_token
+# from flask_jwt_extended import get_jwt_identity
+# from flask_jwt_extended import jwt_required
+
 class LoginSystem:
     def __init__(self, db: SqlHelper):
         self.db = db
