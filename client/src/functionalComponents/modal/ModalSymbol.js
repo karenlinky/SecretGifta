@@ -19,7 +19,7 @@ const ModalSymbol = ({ modalType }) => {
                 return <FaInfoCircle color={color}/>;
         }
     }
-    console.log(modalType == modalConstants.ERROR)
+    
     return (
         <div>
             {getSymbol(modalType)}

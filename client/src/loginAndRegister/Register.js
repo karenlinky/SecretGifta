@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useNavigate } from "react-router-dom";
 import { AppContext } from '../AppContext'
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -8,6 +9,7 @@ import TextLink from "../functionalComponents/text/TextLink";
 import TextBox from "../functionalComponents/textBox/TextBox";
 import Button from "../functionalComponents/button/Button"
 import { messages } from './messages'
+import { messages as generalMessages } from '../messages'
 import { modalConstants } from '../functionalComponents/modal/modalConstants'
 
 const registerSchema = Yup.object({
@@ -35,13 +37,36 @@ const Register = () => {
 
     const { setOpenModal, setModalType, setModalContent } = useContext(AppContext);
 
-    const register = ({ username, password, confirmPassword }) => {
-        console.log("Registering with " + username + ", " + password + " and " + confirmPassword);
-        fetch("/register").then(async response => {
-            const data = await response.json()
+    const navigate = useNavigate();
+
+    const register = ({ username, password }) => {
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            })
+        }
+        fetch(
+            "/register",
+            options,
+        ).then(async response => {
+            const data = await response.json();
+            if (!data["success"]) {
+                setOpenModal(true);
+                setModalType(modalConstants.ERROR);
+                setModalContent(messages.registerUsernameTaken);
+            } else {
+                setOpenModal(true);
+                setModalType(modalConstants.SUCCESS);
+                setModalContent(messages.registerSuccess);
+                navigate("/login");
+            }
+        }).catch(err => {
             setOpenModal(true);
             setModalType(modalConstants.ERROR);
-            setModalContent("This username is already taken.");
+            setModalContent(generalMessages.generalTryAgainError);
         })
     }
 
@@ -52,7 +77,7 @@ const Register = () => {
             </div>
             <Formik
                 initialValues={initialValues}
-                // validationSchema={registerSchema}
+                validationSchema={registerSchema}
                 onSubmit={register}
             >
                 <Form>

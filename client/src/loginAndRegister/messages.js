@@ -5,4 +5,6 @@ export const messages = {
     registerConfirmPasswordRequired: "Please re-type your password.",
     loginUsernameRequired: "Enter a valid username.",
     loginPasswordRequired: "Enter a valid password.",
+    registerUsernameTaken: "This username is already taken.",
+    registerSuccess: "Your account is successfully created.",
 }
