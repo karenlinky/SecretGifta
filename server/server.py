@@ -10,5 +10,9 @@ login_system = LoginSystem(db)
 def register():
     return login_system.register(request)
 
+@app.route("/login", methods=['POST'])
+def login():
+    return login_system.login(request)
+
 if __name__ == "__main__":
     app.run(debug=True)

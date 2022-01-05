@@ -1,4 +1,6 @@
-import React from "react"
+import { useContext } from "react"
+import { useNavigate } from "react-router-dom";
+import { AppContext } from '../AppContext'
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import ValidatedField from "../functionalComponents/validatedField/ValidatedField";
@@ -7,6 +9,8 @@ import TextLink from "../functionalComponents/text/TextLink";
 import TextBox from "../functionalComponents/textBox/TextBox";
 import Button from "../functionalComponents/button/Button"
 import { messages } from './messages'
+import { messages as generalMessages } from '../messages'
+import { modalConstants } from '../functionalComponents/modal/modalConstants'
 
 const loginSchema = Yup.object({
     username: Yup.string().trim().required(messages.loginUsernameRequired),
@@ -19,8 +23,36 @@ const Login = () => {
         password: '',
     }
 
+    const { setOpenModal, setModalType, setModalContent } = useContext(AppContext);
+
+    const navigate = useNavigate();
+
     const login = ({ username, password }) => {
-        // console.log("Logging in with " + username + " and " + password);
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            })
+        }
+        fetch(
+            "/login",
+            options,
+        ).then(async response => {
+            const data = await response.json();
+            if (!data["success"]) {
+                setOpenModal(true);
+                setModalType(modalConstants.ERROR);
+                setModalContent(messages.loginFailed);
+            } else {
+                navigate("/home");
+            }
+        }).catch(err => {
+            setOpenModal(true);
+            setModalType(modalConstants.ERROR);
+            setModalContent(generalMessages.generalTryAgainError);
+        })
     }
 
     return (
