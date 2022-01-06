@@ -1,10 +1,13 @@
 import React from 'react'
+import Header from '../header/Header'
 
 const EventList = () => {
     return (
-        <div>
-            EventList
-        </div>
+        <Header>
+            <div>
+                EventList
+            </div>
+        </Header>
     )
 }
 

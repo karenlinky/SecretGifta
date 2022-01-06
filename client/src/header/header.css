@@ -1,0 +1,20 @@
+@import url("../constants.css");
+
+.header {
+    height: 50px;
+    background-color: var(--color-dark-blue);
+}
+
+
+
+@media (min-width: 601px) {
+    .narrowHeader {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .wideHeader {
+        display: none;
+    }
+}

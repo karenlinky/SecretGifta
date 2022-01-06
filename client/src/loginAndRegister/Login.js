@@ -41,11 +41,13 @@ const Login = () => {
             options,
         ).then(async response => {
             const data = await response.json();
-            if (!data["success"]) {
+            if (!data["access_token"] || data["access_token"]==="") {
                 setOpenModal(true);
                 setModalType(modalConstants.ERROR);
                 setModalContent(messages.loginFailed);
             } else {
+                const token = data["access_token"]
+                sessionStorage.setItem("access_token", token)
                 navigate("/home");
             }
         }).catch(err => {

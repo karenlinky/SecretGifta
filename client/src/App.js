@@ -12,7 +12,7 @@ function App() {
   const modalContext = useModal();
 
   const appContextValue = {
-    ...modalContext
+    ...modalContext,
   }
   
   return (

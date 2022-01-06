@@ -2,9 +2,9 @@ from helper.sql_helper import SqlHelper
 from queries.login_system_queries import LoginSystemQueries
 import bcrypt
 
-# from flask_jwt_extended import create_access_token
-# from flask_jwt_extended import get_jwt_identity
-# from flask_jwt_extended import jwt_required
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
 
 class LoginSystem:
     def __init__(self, db: SqlHelper):
@@ -35,7 +35,7 @@ class LoginSystem:
         users = self.login_system_queries.get_user_info(username)
 
         if len(users) == 0:
-            return {"success": False}
+            return {"access_token": ""}
 
         user = users[0]
 
@@ -44,4 +44,9 @@ class LoginSystem:
 
         correct_password = bcrypt.checkpw(password, hashed_password)
 
-        return {"success": correct_password}
+        if not correct_password:
+            return {"access_token": ""}
+
+        access_token = create_access_token(identity=user_id)
+
+        return {"access_token": access_token}

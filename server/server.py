@@ -1,8 +1,17 @@
+from dotenv import load_dotenv
+load_dotenv()
+import os
+
 from flask import Flask, request
 from helper.sql_helper import SqlHelper
 from login_system import LoginSystem
 
+from flask_jwt_extended import JWTManager
+
 app = Flask(__name__)
+app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_SECRET_KEY")
+jwt = JWTManager(app)
+
 db = SqlHelper()
 login_system = LoginSystem(db)
 
