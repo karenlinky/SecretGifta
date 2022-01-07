@@ -11,6 +11,7 @@ import Button from "../functionalComponents/button/Button"
 import { messages } from './messages'
 import { messages as generalMessages } from '../messages'
 import { modalConstants } from '../functionalComponents/modal/modalConstants'
+import { pageLinkConstants } from '../constants/pageLinkConstants';
 
 const registerSchema = Yup.object({
     username: Yup.string()
@@ -61,7 +62,7 @@ const Register = () => {
                 setOpenModal(true);
                 setModalType(modalConstants.SUCCESS);
                 setModalContent(messages.registerSuccess);
-                navigate("/login");
+                navigate(pageLinkConstants.LOGIN);
             }
         }).catch(err => {
             setOpenModal(true);
@@ -114,7 +115,7 @@ const Register = () => {
                         <Button type="submit" className="buttonPrimary">Register</Button>
                     </div>
                     <div className="cardSection">
-                        <Text>Already have an account? </Text><TextLink className="textBold" to="/login">Login here</TextLink>
+                        <Text>Already have an account? </Text><TextLink className="textBold" to={pageLinkConstants.LOGIN}>Login here</TextLink>
                     </div>
                 </Form>
             </Formik>

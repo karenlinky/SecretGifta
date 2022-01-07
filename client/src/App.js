@@ -3,9 +3,10 @@ import { AppContext } from "./AppContext"
 import LoginAndRegister from "./loginAndRegister/LoginAndRegister"
 import Login from "./loginAndRegister/Login"
 import Register from "./loginAndRegister/Register"
-import EventList from "./eventList/EventList"
+import EventPage from "./eventPage/EventPage"
 import Modal from "./functionalComponents/modal/Modal"
 import useModal from "./functionalComponents/modal/useModal"
+import { pageLinkConstants } from "./constants/pageLinkConstants"
 import './styles.css'
 
 function App() {
@@ -21,9 +22,9 @@ function App() {
         <Modal/>
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<LoginAndRegister innerComponent={<Login/>}/>} />
-            <Route path="/register" element={<LoginAndRegister innerComponent={<Register/>}/>} />
-            <Route path="/home" element={<EventList/>} />
+            <Route path={pageLinkConstants.LOGIN} element={<LoginAndRegister innerComponent={<Login/>}/>} />
+            <Route path={pageLinkConstants.REGISTER} element={<LoginAndRegister innerComponent={<Register/>}/>} />
+            <Route path={pageLinkConstants.HOME} element={<EventPage/>} />
           </Routes>
         </BrowserRouter>
       </AppContext.Provider>

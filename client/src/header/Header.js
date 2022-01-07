@@ -1,15 +1,23 @@
 import React from 'react'
 import './header.css'
+import WideMenu from './WideMenu'
+import NarrowMenu from './NarrowMenu'
 
-const Header = ({ children }) => {
+const Header = ({ currentPage, children }) => {
+    const menu = [
+        "HOME",
+        "FRIENDS",
+        "WISHLIST",
+    ]
+
     return (
         <>
         <div className="header">
             <div className="wideHeader">
-                wide
+                <WideMenu menu={menu} currentPage={currentPage}/>
             </div>
             <div className="narrowHeader">
-                narrow
+                <NarrowMenu menu={menu} currentPage={currentPage}/>
             </div>
         </div>
         {children}

@@ -1,10 +1,98 @@
 @import url("../constants.css");
 
 .header {
-    height: 50px;
-    background-color: var(--color-dark-blue);
+    /* height: 50px; */
+    background-color: var(--secondary-color);
+    border-bottom: var(--primary-color) solid 5px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    /* -webkit-box-shadow: 0 8px 16px -6px black;
+    -moz-box-shadow: 0 8px 16px -6px black; */
+	box-shadow: 0 8px 16px -6px black;
+    color: var(--color-white);
 }
 
+.wideHeader {
+    width: 90%;
+    margin: auto;
+    display: flex;
+}
+
+.headerPart {
+    display: inline-block;
+    /* text-align: center; */
+}
+
+.headerPart.center {
+    text-align: center;
+    flex: 20;
+}
+
+.headerPart.left, .headerPart.right {
+    flex: 5;
+}
+
+.headerPart.left {
+    text-align: left;
+}
+
+.headerPart.right {
+    text-align: right;
+}
+
+.headerTitle {
+    font-family: var(--primary-font);
+    text-decoration: underline;
+}
+
+.menuButton {
+    color: var(--color-white);
+    font-size: large;
+    text-decoration: none;
+}
+
+.menuButton.narrow {
+    padding: 8px 10px;
+}
+
+.menuButton.medium {
+    padding: 8px 20px;
+}
+
+.menuButton.onPage {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
+
+.narrowMenuContainer {
+    width: 80%;
+    margin: auto;
+}
+
+.narrowHeaderContainer {
+    width: 100%;
+    font-size: large;
+    display: flex;
+}
+
+.headerPart.left.narrow {
+    flex: 5;
+}
+
+.headerPart.right.narrow {
+    flex: 5;
+}
+
+.narrowHeaderButtonContainer {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.menuButton.wide {
+    display: block;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
 
 
 @media (min-width: 601px) {

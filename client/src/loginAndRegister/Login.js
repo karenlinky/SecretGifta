@@ -11,6 +11,7 @@ import Button from "../functionalComponents/button/Button"
 import { messages } from './messages'
 import { messages as generalMessages } from '../messages'
 import { modalConstants } from '../functionalComponents/modal/modalConstants'
+import { pageLinkConstants } from "../constants/pageLinkConstants";
 
 const loginSchema = Yup.object({
     username: Yup.string().trim().required(messages.loginUsernameRequired),
@@ -47,8 +48,8 @@ const Login = () => {
                 setModalContent(messages.loginFailed);
             } else {
                 const token = data["access_token"]
-                sessionStorage.setItem("access_token", token)
-                navigate("/home");
+                localStorage.setItem("access_token", token)
+                navigate(pageLinkConstants.HOME);
             }
         }).catch(err => {
             setOpenModal(true);
@@ -91,7 +92,7 @@ const Login = () => {
                         <Button type="submit" className="buttonPrimary">Login</Button>
                     </div>
                     <div className="cardSection">
-                        <Text>Doesn't have an account? </Text><TextLink className="textBold" to="/register">Create one</TextLink>
+                        <Text>Doesn't have an account? </Text><TextLink className="textBold" to={pageLinkConstants.REGISTER}>Create one</TextLink>
                     </div>
                 </Form>
             </Formik>
