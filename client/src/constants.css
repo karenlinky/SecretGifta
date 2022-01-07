@@ -8,5 +8,6 @@
     --primary-background-color: white;
     --page-background-color: #f0faff;
     --primary-font: "Lucida Handwriting";
-    --secondary-font: "Arial"
+    --secondary-font: "Arial";
+    --overlay-opacity: 0.5;
 }

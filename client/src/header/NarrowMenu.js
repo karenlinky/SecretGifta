@@ -6,12 +6,7 @@ import { pageLinkConstants } from '../constants/pageLinkConstants'
 import { pageNameConstants } from './pageConstants'
 import './header.css'
 
-const NarrowMenu = ({ menu, currentPage }) => {
-    const [openMenu, setOpenMenu] = useState(false);
-
-    const toggleMenu = () => {
-        setOpenMenu(!openMenu)
-    }
+const NarrowMenu = ({ menu, currentPage, openMenu, toggleMenu }) => {
 
     return (
         <>

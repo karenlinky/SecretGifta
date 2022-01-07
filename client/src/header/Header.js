@@ -1,9 +1,15 @@
-import React from 'react'
+import { useState } from 'react'
 import './header.css'
 import WideMenu from './WideMenu'
 import NarrowMenu from './NarrowMenu'
 
 const Header = ({ currentPage, children }) => {
+    const [openMenu, setOpenMenu] = useState(false);
+
+    const toggleMenu = () => {
+        setOpenMenu(!openMenu)
+    }
+
     const menu = [
         "HOME",
         "FRIENDS",
@@ -17,10 +23,18 @@ const Header = ({ currentPage, children }) => {
                 <WideMenu menu={menu} currentPage={currentPage}/>
             </div>
             <div className="narrowHeader">
-                <NarrowMenu menu={menu} currentPage={currentPage}/>
+                <NarrowMenu menu={menu} currentPage={currentPage} openMenu={openMenu} toggleMenu={toggleMenu}/>
             </div>
         </div>
-        {children}
+        {openMenu &&
+            <div
+                className={"narrowMenuBackground"}
+                onClick={toggleMenu}
+            />
+        }
+        <div className={"contentWrapper"}>
+            {children}
+        </div>
         </>
     )
 }
