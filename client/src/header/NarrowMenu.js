@@ -16,7 +16,7 @@ const NarrowMenu = ({ menu, currentPage, openMenu, toggleMenu }) => {
                     <HeaderTitle />
                 </div>
                 <div className="narrow headerPart right">
-                    <FaBars className={"toggleNarrowMenuButton"} onClick={toggleMenu} />
+                    <FaBars className="menuToggleButton" onClick={toggleMenu} />
                 </div>
             </div>
             {openMenu && <div className="narrowHeaderButtonContainer">
