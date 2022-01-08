@@ -1,0 +1,9 @@
+@import url("../../constants.css");
+
+.pageTitle {
+    color: var(--primary-color);
+    font-family: var(--primary-font);
+    font-weight: bold;
+    font-size: xx-large;
+    margin-bottom: 25px;
+}

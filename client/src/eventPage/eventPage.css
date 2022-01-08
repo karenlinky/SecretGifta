@@ -1,0 +1,22 @@
+.eventListCardContainer {
+    display: block;
+    width: 100%;
+    height: 110px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.eventListCard {
+    width: 100%;
+    height: 100%;
+}
+
+.eventListContent {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.eventListTitle {
+    font-size: large;
+}
