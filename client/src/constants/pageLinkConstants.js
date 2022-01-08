@@ -5,4 +5,5 @@ export const pageLinkConstants = {
     REGISTER: "/register",
     LOGIN: "/login",
     LOGOUT: "/logout",
+    CREATEEVENT: "/create_event",
 }

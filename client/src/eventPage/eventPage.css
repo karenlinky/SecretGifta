@@ -1,3 +1,7 @@
+.eventListCardLink {
+    text-decoration: none;
+}
+
 .eventListCardContainer {
     display: block;
     width: 100%;
@@ -19,4 +23,18 @@
 
 .eventListTitle {
     font-size: large;
+}
+
+.addIconContainer {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.addIcon {
+    color: var(--color-grey);
+    font-size: xx-large;
+}
+
+.addText {
+    color: var(--color-grey);
 }

@@ -1,0 +1,11 @@
+.eventDetailSection {
+    margin-bottom: 20px;
+}
+
+.eventDetailSectionHeader {
+    font-size: larger;
+}
+
+.eventDetailSectionContent {
+    padding: 10px 15px;
+}

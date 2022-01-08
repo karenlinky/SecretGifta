@@ -4,6 +4,7 @@ import LoginAndRegister from "./loginAndRegister/LoginAndRegister"
 import Login from "./loginAndRegister/Login"
 import Register from "./loginAndRegister/Register"
 import EventPage from "./eventPage/EventPage"
+import EditEventPage from "./eventDetailPage/EditEventPage"
 import Modal from "./functionalComponents/modal/Modal"
 import useModal from "./functionalComponents/modal/useModal"
 import { pageLinkConstants } from "./constants/pageLinkConstants"
@@ -25,6 +26,7 @@ function App() {
             <Route path={pageLinkConstants.LOGIN} element={<LoginAndRegister innerComponent={<Login/>}/>} />
             <Route path={pageLinkConstants.REGISTER} element={<LoginAndRegister innerComponent={<Register/>}/>} />
             <Route path={pageLinkConstants.HOME} element={<EventPage/>} />
+            <Route path={pageLinkConstants.CREATEEVENT} element={<EditEventPage/>} />
           </Routes>
         </BrowserRouter>
       </AppContext.Provider>

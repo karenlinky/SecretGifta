@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaBell, FaSignOutAlt } from "react-icons/fa"
+import { FaSignOutAlt } from "react-icons/fa"
 import MediumMenuButton from './menuButton/MediumMenuButton'
 import NarrowMenuButton from './menuButton/NarrowMenuButton'
 import HeaderTitle from './HeaderTitle'
@@ -16,7 +16,7 @@ const WideMenu = ({ menu, currentPage }) => {
         <div className="headerPart center">
             {
                 menu.map(pageName => {
-                    return <MediumMenuButton key={pageName} onPage={pageLinkConstants[pageName] == currentPage} to={pageLinkConstants[pageName]}>{pageNameConstants[pageName]}</MediumMenuButton>
+                    return <MediumMenuButton key={pageName} onPage={currentPage && pageLinkConstants[pageName] == currentPage} to={pageLinkConstants[pageName]}>{pageNameConstants[pageName]}</MediumMenuButton>
                 })
             }
         </div>

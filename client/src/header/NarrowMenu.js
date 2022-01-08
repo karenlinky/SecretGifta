@@ -22,7 +22,7 @@ const NarrowMenu = ({ menu, currentPage, openMenu, toggleMenu }) => {
             {openMenu && <div className="narrowHeaderButtonContainer">
                 {
                     menu.map(pageName => {
-                        return <WideMenuButton key={pageName} onPage={pageLinkConstants[pageName] == currentPage} to={pageLinkConstants[pageName]}>{pageNameConstants[pageName]}</WideMenuButton>
+                        return <WideMenuButton key={pageName} onPage={currentPage && pageLinkConstants[pageName] == currentPage} to={pageLinkConstants[pageName]}>{pageNameConstants[pageName]}</WideMenuButton>
                     })
                 }
                 <WideMenuButton to={pageLinkConstants.LOGOUT}>Logout</WideMenuButton>

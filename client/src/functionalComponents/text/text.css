@@ -1,5 +1,10 @@
 @import url("../../constants.css");
 
+.text {
+    color: var(--color-grey);
+    text-decoration:none;
+}
+
 .textBold {
     font-weight: bold;
 }

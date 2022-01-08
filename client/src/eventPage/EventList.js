@@ -1,5 +1,6 @@
 import React from 'react'
-import EventListCard from './EventListCard'
+import EventListDetailCard from './EventListDetailCard'
+import EventListAddCard from './EventListAddCard';
 
 const EventList = () => {
     const eventList = [
@@ -293,9 +294,12 @@ const EventList = () => {
     ];
 
     return (
-        eventList.map(event => {
-            return <EventListCard key={event.id} {...event} />
-        })
+        <>
+        <EventListAddCard/>
+        {eventList.map(event => {
+            return <EventListDetailCard key={event.id} {...event} />
+        })}
+        </>
     )
 }
 

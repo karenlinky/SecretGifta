@@ -7,8 +7,8 @@ import EventList from './EventList'
 const EventPage = () => {
     return (
         <Header currentPage={pageLinkConstants.HOME}>
-        <PageTitle>Home</PageTitle>
-        <EventList/>
+            <PageTitle>Home</PageTitle>
+            <EventList/>
         </Header>
     )
 }
