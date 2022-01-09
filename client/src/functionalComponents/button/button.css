@@ -1,22 +1,26 @@
 @import url("../../constants.css");
 
-.button{
+.button {
     border-radius: 25px;
     padding: 15px 25px;
     border: none;
     font-weight: bold;
 }
 
-.button:hover{
+.button:hover {
     cursor: pointer;
 }
 
-.buttonPrimary{
+.buttonPrimary {
     color: var(--color-white);
     background-color: var(--primary-color);
 }
 
-.buttonSecondary{
+.buttonSecondary {
     color: var(--primary-color);
     background-color: var(--color-grey);
+}
+
+.smallButton {
+    padding: 5px 10px;
 }

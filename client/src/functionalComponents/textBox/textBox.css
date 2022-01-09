@@ -2,8 +2,8 @@
 
 .textBox {
     border-radius: 10px;
-    padding: 10px 10px;
-    font-size: large;
+    padding: 13px 15px;
+    font-size: medium;
     border: none;
     /* border-right: 1px solid var(--primary-color); */
     border-bottom: 1px solid var(--primary-color);

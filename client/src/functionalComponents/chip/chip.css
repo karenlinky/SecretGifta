@@ -1,0 +1,24 @@
+@import url("../../constants.css");
+
+.chip {
+    background-color: var(--toolbox-color);
+    padding: 15px 15px;
+    border-radius: 15px;
+    display: inline-block;
+    margin: 2px;
+    transition-duration: 500ms;
+}
+
+.chipDeleteIcon {
+    margin-right: 5px;
+}
+
+.chipContent {
+    color: var(--color-white);
+    vertical-align: text-bottom;
+}
+
+.chip.removable:hover {
+    cursor: pointer;
+    background-color: var(--color-remove);
+}

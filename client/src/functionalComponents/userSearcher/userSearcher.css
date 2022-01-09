@@ -1,0 +1,80 @@
+@import url("../../constants.css");
+
+.searchBar {
+    padding: 5px 8px;
+    background-color: var(--toolbox-color);
+    /* background-color: var(--secondary-color); */
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.searchTextBox {
+    /* border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px; */
+}
+
+.searchButton {
+    display: inline;
+    color: var(--color-white);
+    padding: 15px;
+}
+
+.searchButton:hover {
+    cursor: pointer;
+}
+
+.searchResult {
+    margin-top: 3px;
+    border-radius: 10px;
+}
+
+.searchResultTab {
+    /* padding: 10px 25px; */
+    /* padding-left: 25px;
+    padding-right: 25px; */
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: var(--color-white);
+    margin-top: 2px;
+    margin-bottom: 2px;
+    display: flex;
+    transition-duration: 500ms;
+    border-left: 20px solid var(--secondary-color);
+}
+
+.searchResultTab.pinned {
+    border-left-color: var(--primary-color);
+}
+
+.searchResultTab:hover {
+    cursor: pointer;
+}
+
+.searchResultName {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    flex: 1;
+    transition-duration: 500ms;
+}
+
+.searchResultName.hover {
+    margin-left: 35px;
+}
+
+.searchResultClickInstruction {
+    color: var(--color-white);
+    font-size: large;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition-duration: 500ms;
+    border-radius: 10px;
+
+}
+
+.searchResultClickInstruction.hover {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}

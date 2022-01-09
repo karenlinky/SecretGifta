@@ -1,5 +1,11 @@
 .eventDetailSection {
     margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.eventDetailSectionSameLine {
+    display: inline-block;
 }
 
 .eventDetailSectionHeader {
@@ -8,4 +14,9 @@
 
 .eventDetailSectionContent {
     padding: 10px 15px;
+}
+
+.giftValueSeparator {
+    margin-left: 15px;
+    margin-right: 15px;
 }

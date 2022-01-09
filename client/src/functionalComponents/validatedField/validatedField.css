@@ -2,6 +2,10 @@
     width: 100%
 }
 
+.fieldShort{
+    width: 80px;
+}
+
 .validatedFieldError{
     color: rgb(197, 0, 0);
     font-weight: lighter;

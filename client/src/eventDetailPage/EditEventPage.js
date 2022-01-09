@@ -9,6 +9,18 @@ const EditEventPage = () => {
     const initialValues = {
         name: '',
         date: '',
+        min: '',
+        max: '',
+        giftas: [
+            // {
+            //     id: 2,
+            //     username: 'testUser2',
+            // },
+            // {
+            //     id: 3,
+            //     username: 'testUser3',
+            // },
+        ],
     }
 
     return (

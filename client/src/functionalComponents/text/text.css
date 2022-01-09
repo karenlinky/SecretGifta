@@ -16,3 +16,8 @@
 .textLink:hover {
     cursor: pointer;
 }
+
+.textDescribe {
+    font-size: small;
+    font-weight: 500;
+}
