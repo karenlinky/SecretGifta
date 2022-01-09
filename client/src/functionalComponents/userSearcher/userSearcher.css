@@ -17,6 +17,9 @@
     display: inline;
     color: var(--color-white);
     padding: 15px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    margin-left: 3px;
 }
 
 .searchButton:hover {
@@ -26,6 +29,13 @@
 .searchResult {
     margin-top: 3px;
     border-radius: 10px;
+}
+
+.noSearchResult {
+    padding-top: 20px;
+    color: var(--color-black);
+    font-weight: bold;
+    text-align: center;
 }
 
 .searchResultTab {
@@ -77,4 +87,15 @@
 .searchResultClickInstruction.hover {
     color: var(--primary-color);
     background-color: var(--secondary-color);
+}
+
+.closeSearchResultButton {
+    margin-top: 10px;
+    text-align: center;
+    color: var(--color-white);
+    font-size: xx-large;
+}
+
+.closeSearchResultIcon:hover {
+    cursor: pointer;
 }

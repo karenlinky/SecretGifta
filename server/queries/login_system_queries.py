@@ -1,11 +1,12 @@
 from helper.sql_helper import SqlHelper
+from queries.database_constants import DatabaseConstants
 
 class LoginSystemQueries:
     def __init__(self, db: SqlHelper):
         self.db = db
-        self.table_name = "Users"
-        self.username_col = "Username"
-        self.password_col = "Password"
+        self.table_name = DatabaseConstants.USER_TABLE
+        self.username_col = DatabaseConstants.USER_USERNAME_COL
+        self.password_col = DatabaseConstants.USER_PASSWORD_COL
 
     def check_user_exists(self, username):
         result = self.get_user_info(username)

@@ -1,4 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useContext } from 'react'
+import { AppContext } from '../../AppContext'
+import { messages as generalMessages } from '../../messages'
+import { modalConstants } from '../modal/modalConstants'
 import TextBox from '../textBox/TextBox'
 import Button from '../button/Button'
 import { FaSearch } from 'react-icons/fa'
@@ -7,9 +10,11 @@ import './userSearcher.css'
 
 const UserSearcher = ({ onApply, clickInstruction }) => {
 
-    const [keyword, setKeyword] = useState('')
+    const [keyword, setKeyword] = useState('');
 
-    const [showSearchResult, setShowSearchResult] = useState(true);
+    const { setOpenModal, setModalType, setModalContent } = useContext(AppContext);
+
+    const [showSearchResult, setShowSearchResult] = useState(false);
     const [searchResult, setSearchResult] = useState([]);
     const [doneSearching, setDoneSearching] = useState(false);
 
@@ -18,53 +23,40 @@ const UserSearcher = ({ onApply, clickInstruction }) => {
         setSearchResult(result);
     }
 
+    const closeSearchResult = () => {
+        setShowSearchResult(false);
+        setDoneSearching(false);
+        setSearchResult([]);
+    }
 
-
-    const searchUser = (username) => {
-        console.log(username)
-        if (username == '') {
+    const searchUser = ({ username, password }) => {
+        if (keyword.trim() == '') {
             return;
         }
 
         setShowSearchResult(true);
-        // fetch
-        displaySearchResult([
-            {
-                id: 2,
-                pinned: true,
-                username: 'testUser2',
-            },
-            {
-                id: 3,
-                pinned: true,
-                username: 'testUser3',
-            },
-            {
-                id: 4,
-                pinned: true,
-                username: 'testUser4',
-            },
-            {
-                id: 5,
-                pinned: false,
-                username: 'testUser5',
-            },
-            {
-                id: 6,
-                pinned: false,
-                username: 'testUser6',
-            },
-            {
-                id: 7,
-                pinned: false,
-                username: 'testUser7',
-            },
-            {
-                id: 8,
-                pinned: false,
-                username: 'testUser8',
-            },
-        ])
+
+        const headers = {
+            "Authorization": "Bearer " + localStorage.getItem("access_token"),
+        };
+
+        const options = {
+            method: 'GET',
+            headers: headers,
+        }
+        
+        fetch(
+            `/search_user?keyword=${keyword.trim()}`,
+            options
+        ).then(async response => {
+            const data = await response.json();
+            console.log(data)
+            displaySearchResult(data.users);
+        }).catch(err => {
+            setOpenModal(true);
+            setModalType(modalConstants.ERROR);
+            setModalContent(generalMessages.generalTryAgainError);
+        })
 
 
 
@@ -86,7 +78,7 @@ const UserSearcher = ({ onApply, clickInstruction }) => {
                     onClick={() => {searchUser(keyword)}}>
                     <FaSearch/>
                 </div>
-                {showSearchResult && <SearchUserResult searchResult={searchResult} doneSearching={doneSearching} onApply={onApply} clickInstruction={clickInstruction} />}
+                {showSearchResult && <SearchUserResult searchResult={searchResult} doneSearching={doneSearching} onApply={onApply} clickInstruction={clickInstruction} closeSearchResult={closeSearchResult} />}
             </div>
         </>
     )
