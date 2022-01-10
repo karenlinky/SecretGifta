@@ -1,4 +1,7 @@
-import React from 'react'
+import { useContext } from 'react'
+import { AppContext } from '../AppContext'
+import { messages as generalMessages } from '../messages'
+import { modalConstants } from '../functionalComponents/modal/modalConstants'
 import Header from '../header/Header'
 import PageTitle from '../functionalComponents/pageTitle/PageTitle'
 import { Form, Formik } from "formik";
@@ -33,11 +36,52 @@ const EditEventPage = () => {
         number: 1,
     }
 
-    const create = ({ giftas, number }, ) => {
+    const { setOpenModal, setModalType, setModalContent } = useContext(AppContext);
+
+    const create = ({ name, date, min, max, giftas, number }, ) => {
         if (number > giftas.length - 1) {
             return;
         }
-        console.log('hi')
+        console.log(name)
+        console.log(date)
+        console.log(min)
+        console.log(max === "")
+        console.log(giftas)
+        console.log(number)
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+            },
+            body: JSON.stringify({
+                name: name,
+                date: date,
+                min: min,
+                max: max,
+                giftas: giftas,
+                number: number,
+            })
+        }
+        fetch(
+            "/edit_event",
+            options,
+        ).then(async response => {
+            const data = await response.json();
+            // if (!data["access_token"] || data["access_token"]==="") {
+            //     setOpenModal(true);
+            //     setModalType(modalConstants.ERROR);
+            //     setModalContent(messages.loginFailed);
+            // } else {
+            //     const token = data["access_token"]
+            //     localStorage.setItem("access_token", token)
+            //     navigate(pageLinkConstants.HOME);
+            // }
+        }).catch(err => {
+            setOpenModal(true);
+            setModalType(modalConstants.ERROR);
+            setModalContent(generalMessages.generalTryAgainError);
+        })
     }
 
     return (

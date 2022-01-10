@@ -31,7 +31,7 @@ def login():
 @jwt_required()
 def search_user():
     requester_id = get_jwt_identity();
-    return user.search_by_user_name(request, requester_id)
+    return user.search_by_userd_name(request, requester_id)
 
 if __name__ == "__main__":
     app.run(debug=True)

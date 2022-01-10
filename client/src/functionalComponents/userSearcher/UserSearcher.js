@@ -81,13 +81,6 @@ const UserSearcher = ({ existedUsers, onApply, clickInstruction }) => {
             setModalType(modalConstants.ERROR);
             setModalContent(generalMessages.generalTryAgainError);
         })
-
-
-
-        // trim
-        // show invisible overlay
-        // show 10 search results
-        //      close when click on overlay
     }
 
     useEffect(() => {

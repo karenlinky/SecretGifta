@@ -24,24 +24,26 @@ const Modal = () => {
 
     return (
         <>
-            <div
-                className={"modalBackground" + (openModal ? "" : " hideModal")}
-                onClick={closeModal}
-            />
-            <div
-                className={"modalCardContainer" + (openModal ? "" : " hideModal")}>
-                <Card className="modalCard smallCard">
-                    <div className="cardSection">
-                        <ModalSymbol modalType={modalType}/>
-                        {modalContent}
-                    </div>
-                    <div className="cardSection">
-                        <Button className="buttonPrimary" onClick={closeModal}>
-                            {closeText && closeText!="" ? closeText : "Got it!"}
-                        </Button>
-                    </div>
-                </Card>
-            </div>
+            {openModal && <div className={'modalWrapper'}>
+                <div
+                    className={"modalBackground" + (openModal ? "" : " hideModal")}
+                    onClick={closeModal}
+                />
+                <div
+                    className={"modalCardContainer" + (openModal ? "" : " hideModal")}>
+                    <Card className="modalCard smallCard">
+                        <div className="cardSection">
+                            <ModalSymbol modalType={modalType}/>
+                            {modalContent}
+                        </div>
+                        <div className="cardSection">
+                            <Button className="buttonPrimary" onClick={closeModal}>
+                                {closeText && closeText!="" ? closeText : "Got it!"}
+                            </Button>
+                        </div>
+                    </Card>
+                </div>
+            </div>}
         </>
     )
 }

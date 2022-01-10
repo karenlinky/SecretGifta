@@ -21,7 +21,7 @@ const EditEventForm = () => {
                     <Text className={"eventDetailSectionHeader"}>Event Name</Text>
                 </div>
                 <div>
-                    <TextDescribe>Give your event a name to help identify your event.</TextDescribe>
+                    <TextDescribe>Give the event a name to help identify the event.</TextDescribe>
                 </div>
                 <div className={"eventDetailSectionContent"}>
                     <ValidatedField
@@ -107,7 +107,7 @@ const EditEventForm = () => {
                 </div>
             </div>
             <div className="eventDetailSection">
-                <Button type="submit" className="buttonPrimary">Create</Button>
+                <Button type="submit" className="buttonPrimary">Share Event with Participants</Button>
             </div>
         </>
     )

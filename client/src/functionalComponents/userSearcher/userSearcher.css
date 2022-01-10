@@ -8,11 +8,6 @@
     border-radius: 10px;
 }
 
-.searchTextBox {
-    /* border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px; */
-}
-
 .searchButton {
     display: inline;
     color: var(--color-white);
