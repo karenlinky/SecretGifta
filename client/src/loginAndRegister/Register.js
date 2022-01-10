@@ -21,7 +21,7 @@ const registerSchema = Yup.object({
         .required(messages.registerUsernameRequired),
     password: Yup.string()
         .min(7, messages.registerPasswordRequired)
-        .max(250, messages.registerUsernameRequired)
+        .max(250, messages.registerPasswordRequired)
         .matches(/^(?!.* )(?=.*\d)(?=.*[A-Za-z]).*$/, messages.registerPasswordRequired)
         .required(messages.registerPasswordRequired),
     confirmPassword: Yup.string()

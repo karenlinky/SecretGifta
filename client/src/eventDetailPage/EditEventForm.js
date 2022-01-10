@@ -1,18 +1,21 @@
-import React from 'react'
-import { Form, useFormikContext } from "formik";
+import { useEffect } from 'react'
+import { useFormikContext } from "formik";
 import Text from '../functionalComponents/text/Text';
 import TextBox from '../functionalComponents/textBox/TextBox';
 import ValidatedField from '../functionalComponents/validatedField/ValidatedField';
+import ValidatedFieldError from '../functionalComponents/validatedField/ValidatedFieldError';
+import { messages } from './messages';
 import DateSelector from '../functionalComponents/dateSelector/DateSelector';
 import EditGiftas from './EditGiftas';
 import TextDescribe from '../functionalComponents/text/TextDescribe';
+import Button from '../functionalComponents/button/Button';
 import './eventDetailPage.css'
 
 const EditEventForm = () => {
     const { values, setFieldValue } = useFormikContext();
 
     return (
-        <Form autoComplete="off">
+        <>
             <div className={"eventDetailSection eventDetailSectionSameLine"}>
                 <div>
                     <Text className={"eventDetailSectionHeader"}>Event Name</Text>
@@ -50,7 +53,7 @@ const EditEventForm = () => {
                     <Text className={"eventDetailSectionHeader"}>Gift Value Range</Text>
                 </div>
                 <div>
-                    <TextDescribe>How much should each gift be?</TextDescribe>
+                    <TextDescribe>How much should each gift be?<br/>Leave Max empty for unlimited.</TextDescribe>
                 </div>
                 <div className={"eventDetailSectionContent"}>
                     <ValidatedField
@@ -59,6 +62,7 @@ const EditEventForm = () => {
                         placeholder={"Min"}
                         className={'fieldShort'}
                         type={'number'}
+                        min={0}
                     />
                     <Text className={'giftValueSeparator'}>to</Text>
                     <ValidatedField
@@ -67,6 +71,7 @@ const EditEventForm = () => {
                         placeholder={"Max"}
                         className={'fieldShort'}
                         type={'number'}
+                        min={0}
                     />
                 </div>
             </div>
@@ -76,6 +81,9 @@ const EditEventForm = () => {
                 </div>
                 <div>
                     <TextDescribe>Add participants by searching their username.<br/>Remove participants by clicking on their name.</TextDescribe>
+                </div>
+                <div>
+                    {(values.giftas.length < 2 || values.number > values.giftas.length - 1) && <ValidatedFieldError>{messages.eventParticipantsRequired(values.giftas.length, values.number)}</ValidatedFieldError>}
                 </div>
                 <div className={"eventDetailSectionContent"}>
                     <EditGiftas giftas={values.giftas} setFieldValue={setFieldValue} />
@@ -95,10 +103,13 @@ const EditEventForm = () => {
                         placeholder={"#"}
                         className={'fieldShort'}
                         type={'number'}
-                    />
+                        min={1}/>
                 </div>
             </div>
-        </Form>
+            <div className="eventDetailSection">
+                <Button type="submit" className="buttonPrimary">Create</Button>
+            </div>
+        </>
     )
 }
 

@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { AppContext } from '../../AppContext'
 import { messages as generalMessages } from '../../messages'
 import { modalConstants } from '../modal/modalConstants'
@@ -8,19 +8,38 @@ import { FaSearch } from 'react-icons/fa'
 import SearchUserResult from './SearchUserResult'
 import './userSearcher.css'
 
-const UserSearcher = ({ onApply, clickInstruction }) => {
+const UserSearcher = ({ existedUsers, onApply, clickInstruction }) => {
 
     const [keyword, setKeyword] = useState('');
 
     const { setOpenModal, setModalType, setModalContent } = useContext(AppContext);
 
     const [showSearchResult, setShowSearchResult] = useState(false);
+    const [rawSearchResult, setRawSearchResult] = useState([]);
     const [searchResult, setSearchResult] = useState([]);
     const [doneSearching, setDoneSearching] = useState(false);
 
+    const filterResult = (searchResult, existedUsers) => {
+        let newSearchResult = []
+        for (let i = 0; i < searchResult.length; i++) {
+            let existed = false;
+            for (let j = 0; j < existedUsers.length; j++) {
+                if  (searchResult[i].id == existedUsers[j].id) {
+                    existed = true;
+                    break;
+                }
+            }
+            if (!existed) {
+                newSearchResult.push(searchResult[i]);
+            }
+        }
+        return newSearchResult;
+    }
+
     const displaySearchResult = (result) => {
         setDoneSearching(true);
-        setSearchResult(result);
+        setRawSearchResult(result);
+        setSearchResult(filterResult(result, existedUsers));
     }
 
     const closeSearchResult = () => {
@@ -28,9 +47,15 @@ const UserSearcher = ({ onApply, clickInstruction }) => {
         setDoneSearching(false);
         setSearchResult([]);
     }
+    
+    useEffect(() => {
+        let newSearchResult = filterResult(rawSearchResult, existedUsers);
+        setSearchResult(newSearchResult);
+    }, [existedUsers])
 
     const searchUser = ({ username, password }) => {
         if (keyword.trim() == '') {
+            setShowSearchResult(false);
             return;
         }
 
@@ -46,11 +71,10 @@ const UserSearcher = ({ onApply, clickInstruction }) => {
         }
         
         fetch(
-            `/search_user?keyword=${keyword.trim()}`,
+            `/search_user?keyword=${keyword.trim()}&searchSelf=0`,
             options
         ).then(async response => {
             const data = await response.json();
-            console.log(data)
             displaySearchResult(data.users);
         }).catch(err => {
             setOpenModal(true);
@@ -66,6 +90,10 @@ const UserSearcher = ({ onApply, clickInstruction }) => {
         //      close when click on overlay
     }
 
+    useEffect(() => {
+        searchUser(keyword)
+    }, [keyword])
+
     return (
         <>
             <div className={"searchBar"}>
@@ -73,11 +101,11 @@ const UserSearcher = ({ onApply, clickInstruction }) => {
                     className={'searchTextBox'}
                     placeholder={'Search by username...'}
                     onChange={(e) => setKeyword(e.target.value)}/>
-                <div
+                {/* <div
                     className={'searchButton'}
                     onClick={() => {searchUser(keyword)}}>
                     <FaSearch/>
-                </div>
+                </div> */}
                 {showSearchResult && <SearchUserResult searchResult={searchResult} doneSearching={doneSearching} onApply={onApply} clickInstruction={clickInstruction} closeSearchResult={closeSearchResult} />}
             </div>
         </>

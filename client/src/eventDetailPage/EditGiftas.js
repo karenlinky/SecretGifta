@@ -31,7 +31,7 @@ const EditGiftas = ({ giftas, setFieldValue }) => {
     return (
         <>
             <EditGiftaList removeUser={removeUser} userList={userList} />
-            <UserSearcher onApply={addUser} clickInstruction={<FaPlusCircle/>}/>
+            <UserSearcher existedUsers={giftas} onApply={addUser} clickInstruction={<FaPlusCircle/>}/>
         </>
     )
 }

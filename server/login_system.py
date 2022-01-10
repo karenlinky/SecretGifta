@@ -6,6 +6,8 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
+import datetime
+
 class LoginSystem:
     def __init__(self, db: SqlHelper):
         self.db = db
@@ -47,6 +49,7 @@ class LoginSystem:
         if not correct_password:
             return {"access_token": ""}
 
-        access_token = create_access_token(identity=user_id)
+        expires = datetime.timedelta(minutes=45)
+        access_token = create_access_token(identity=user_id, expires_delta=expires)
 
         return {"access_token": access_token}

@@ -6,8 +6,9 @@ class User:
         self.db = db
         self.user_queries = UserQueries(self.db)
 
-    def search_by_user_name(self, request):
+    def search_by_user_name(self, request, requester_id):
         keyword = request.args.get("keyword")
+        searchSelf = request.args.get("searchSelf") == 1
         # data = request.get_json()
         # username = data["username"]
 
@@ -16,10 +17,11 @@ class User:
         result = []
 
         for user in users:
-            result.append({
-                "id": user[0],
-                "username": user[1],
-                "pinned": False,
-            })
+            if searchSelf or (requester_id != user[0]) :
+                result.append({
+                    "id": user[0],
+                    "username": user[1],
+                    "pinned": False,
+                })
 
         return {"users": result}
