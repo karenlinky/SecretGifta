@@ -1,5 +1,5 @@
 export const messages = {
-    eventNameRequired: "Give the event a name.",
+    eventNameRequired: "Give the event a name.\n50 characters max.",
     eventDateRequired: "Give the event a date.",
     eventMinRequired: "Min is required.",
     eventMinLogic: "Min has to be at least 0.",

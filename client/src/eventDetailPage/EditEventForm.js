@@ -107,7 +107,7 @@ const EditEventForm = () => {
                 </div>
             </div>
             <div className="eventDetailSection">
-                <Button type="submit" className="buttonPrimary">Share Event with Participants</Button>
+                <Button type="submit" className="buttonPrimary">Save</Button>
             </div>
         </>
     )

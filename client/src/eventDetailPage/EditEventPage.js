@@ -11,7 +11,10 @@ import './eventDetailPage.css'
 import { messages } from './messages'
 
 const eventSchema = Yup.object({
-    name: Yup.string().trim().required(messages.eventNameRequired),
+    name: Yup.string()
+    .trim()
+    .max(50, messages.eventNameRequired)
+    .required(messages.eventNameRequired),
     date: Yup
     .date()
     .nullable()
@@ -43,7 +46,7 @@ const EditEventPage = () => {
             return;
         }
         console.log(name)
-        console.log(date)
+        console.log(Date.parse(date))
         console.log(min)
         console.log(max === "")
         console.log(giftas)
@@ -68,6 +71,7 @@ const EditEventPage = () => {
             options,
         ).then(async response => {
             const data = await response.json();
+            console.log(data);
             // if (!data["access_token"] || data["access_token"]==="") {
             //     setOpenModal(true);
             //     setModalType(modalConstants.ERROR);

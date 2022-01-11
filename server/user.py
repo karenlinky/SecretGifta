@@ -9,8 +9,6 @@ class User:
     def search_by_user_name(self, request, requester_id):
         keyword = request.args.get("keyword")
         searchSelf = request.args.get("searchSelf") == 1
-        # data = request.get_json()
-        # username = data["username"]
 
         users = self.user_queries.search_user_by_username(keyword)
 
