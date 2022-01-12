@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../AppContext'
 import { messages as generalMessages } from '../messages'
 import { modalConstants } from '../functionalComponents/modal/modalConstants'
@@ -9,6 +10,8 @@ import * as Yup from "yup";
 import EditEventForm from './EditEventForm';
 import './eventDetailPage.css'
 import { messages } from './messages'
+import { checkExpired } from '../helper'
+import { pageLinkConstants } from '../constants/pageLinkConstants'
 
 const eventSchema = Yup.object({
     name: Yup.string()
@@ -40,17 +43,12 @@ const EditEventPage = () => {
     }
 
     const { setOpenModal, setModalType, setModalContent } = useContext(AppContext);
+    const navigate = useNavigate();
 
     const create = ({ name, date, min, max, giftas, number }, ) => {
         if (number > giftas.length - 1) {
             return;
         }
-        console.log(name)
-        console.log(Date.parse(date))
-        console.log(min)
-        console.log(max === "")
-        console.log(giftas)
-        console.log(number)
         const options = {
             method: 'POST',
             headers: {
@@ -71,16 +69,20 @@ const EditEventPage = () => {
             options,
         ).then(async response => {
             const data = await response.json();
-            console.log(data);
-            // if (!data["access_token"] || data["access_token"]==="") {
-            //     setOpenModal(true);
-            //     setModalType(modalConstants.ERROR);
-            //     setModalContent(messages.loginFailed);
-            // } else {
-            //     const token = data["access_token"]
-            //     localStorage.setItem("access_token", token)
-            //     navigate(pageLinkConstants.HOME);
-            // }
+            const expired = checkExpired(data);
+            if (expired) {
+                navigate(pageLinkConstants.LOGOUT);
+            }
+            if (!data.success) {
+                setOpenModal(true);
+                setModalType(modalConstants.ERROR);
+                setModalContent(messages.generalTryAgainError);
+            } else {
+                setOpenModal(true);
+                setModalType(modalConstants.SUCCESS);
+                setModalContent('Your event is successfully saved. All participants can view this event in their homepage.');
+                navigate(pageLinkConstants.HOME);
+            }
         }).catch(err => {
             setOpenModal(true);
             setModalType(modalConstants.ERROR);

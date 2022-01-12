@@ -13,7 +13,7 @@ const LoginAndRegister = ({ innerComponent }) => {
         if (token && token !== "") {
             navigate(pageLinkConstants.HOME)
         }
-    })
+    }, [])
 
     return (
         <>

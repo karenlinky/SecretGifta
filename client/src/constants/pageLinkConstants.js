@@ -6,4 +6,5 @@ export const pageLinkConstants = {
     LOGIN: "/login",
     LOGOUT: "/logout",
     CREATEEVENT: "/create_event",
+    VIEWEVENT: "/event",
 }

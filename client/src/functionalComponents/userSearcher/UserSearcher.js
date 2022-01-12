@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../AppContext'
 import { messages as generalMessages } from '../../messages'
 import { modalConstants } from '../modal/modalConstants'
@@ -6,9 +7,12 @@ import TextBox from '../textBox/TextBox'
 import Button from '../button/Button'
 import { FaSearch } from 'react-icons/fa'
 import SearchUserResult from './SearchUserResult'
+import { checkExpired } from '../../helper'
+import { pageLinkConstants } from '../../constants/pageLinkConstants'
 import './userSearcher.css'
 
 const UserSearcher = ({ existedUsers, onApply, clickInstruction }) => {
+    const navigate = useNavigate();
 
     const [keyword, setKeyword] = useState('');
 
@@ -75,7 +79,12 @@ const UserSearcher = ({ existedUsers, onApply, clickInstruction }) => {
             options
         ).then(async response => {
             const data = await response.json();
-            displaySearchResult(data.users);
+            const expired = checkExpired(data);
+            if (expired) {
+                navigate(pageLinkConstants.LOGOUT);
+            } else {
+                displaySearchResult(data.users);
+            }
         }).catch(err => {
             setOpenModal(true);
             setModalType(modalConstants.ERROR);

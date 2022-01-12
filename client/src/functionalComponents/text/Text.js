@@ -1,9 +1,9 @@
 import React from 'react'
 import './text.css'
 
-const Text = ({ children, className }) => {
+const Text = ({ children, className, ...props }) => {
     return (
-        <span className={"text " + className }>
+        <span className={"text " + className } {...props}>
             {children}
         </span>
     )

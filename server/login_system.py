@@ -49,7 +49,7 @@ class LoginSystem:
         if not correct_password:
             return {"access_token": ""}
 
-        expires = datetime.timedelta(minutes=45)
+        expires = datetime.timedelta(hours=2)
         access_token = create_access_token(identity=user_id, expires_delta=expires)
 
         return {"access_token": access_token}

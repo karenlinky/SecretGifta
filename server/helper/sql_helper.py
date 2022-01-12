@@ -36,3 +36,9 @@ class SqlHelper:
             return self.cursor.fetchall()
         except Exception as e:
             raise Exception("Failed to execute query (" + query + ") and return result: " + str(e))
+
+    def get_last_inserted_id(self):
+        try:
+            return self.cursor.lastrowid
+        except Exception as e:
+            raise Exception("Failed to retrieve last inserted id: " + str(e))
