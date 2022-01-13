@@ -120,7 +120,7 @@ class Event:
         event_id = request.args.get("event_id")
         events = self.event_queries.get_event(event_id, requester_id)
         if len(events) == 0:
-            return []
+            return {"event": []}
         return {"event": [self.form_event(events[0], requester_id)]}
         
 

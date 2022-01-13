@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { pageLinkConstants } from './constants/pageLinkConstants';
+import { pageLinkConstants } from '../constants/pageLinkConstants';
 
 const Logout = () => {
     localStorage.removeItem("access_token");

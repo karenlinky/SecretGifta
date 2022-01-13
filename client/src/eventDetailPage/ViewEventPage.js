@@ -6,20 +6,18 @@ import { messages as generalMessages } from '../messages'
 import { modalConstants } from '../functionalComponents/modal/modalConstants'
 import Header from '../header/Header'
 import PageTitle from '../functionalComponents/pageTitle/PageTitle'
-import { Form, Formik } from "formik";
-import * as Yup from "yup";
-import EditEventForm from './EditEventForm';
 import './eventDetailPage.css'
-import { messages } from './messages'
 import { display } from '../eventPage/display'
 import Chip from '../functionalComponents/chip/Chip'
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa'
-import { checkExpired } from '../helper'
+import { checkExpired } from '../loginAndRegister/helper'
 import { pageLinkConstants } from '../constants/pageLinkConstants'
 
 
 
 const ViewEventPage = ({ match }) => {
+
+    const { setOpenModal, setModalType, setModalContent } = useContext(AppContext);
 
     const { event_id } = useParams();
     const [name, setName] = useState('');
@@ -49,21 +47,21 @@ const ViewEventPage = ({ match }) => {
             const expired = checkExpired(data);
             if (expired) {
                 navigate(pageLinkConstants.LOGOUT);
+            } else if (!data.event || data.event.length == 0) {
+                navigate(pageLinkConstants.HOME);
+            } else {
+                const event = data.event[0];
+                setName(event.name);
+                setDate(display.displayDate(event.date))
+                setMinMax(display.displayValueLimit(event.min, event.max))
+                setParticipants(event.giftas)
+                setGiftee(event.giftee)
             }
-            if (!data.event || data.event.length == 0) {
-
-            }
-            const event = data.event[0];
-            setName(event.name);
-            setDate(display.displayDate(event.date))
-            setMinMax(display.displayValueLimit(event.min, event.max))
-            setParticipants(event.giftas)
-            setGiftee(event.giftee)
-            // displaySearchResult(data.users);
         }).catch(err => {
-            // setOpenModal(true);
-            // setModalType(modalConstants.ERROR);
-            // setModalContent(generalMessages.generalTryAgainError);
+            setOpenModal(true);
+            setModalType(modalConstants.ERROR);
+            setModalContent(generalMessages.generalTryAgainError);
+            navigate(pageLinkConstants.HOME);
         })
     }
     useEffect(() => {

@@ -4,10 +4,8 @@ import { AppContext } from '../../AppContext'
 import { messages as generalMessages } from '../../messages'
 import { modalConstants } from '../modal/modalConstants'
 import TextBox from '../textBox/TextBox'
-import Button from '../button/Button'
-import { FaSearch } from 'react-icons/fa'
 import SearchUserResult from './SearchUserResult'
-import { checkExpired } from '../../helper'
+import { checkExpired } from '../../loginAndRegister/helper'
 import { pageLinkConstants } from '../../constants/pageLinkConstants'
 import './userSearcher.css'
 
@@ -103,11 +101,6 @@ const UserSearcher = ({ existedUsers, onApply, clickInstruction }) => {
                     className={'searchTextBox'}
                     placeholder={'Search by username...'}
                     onChange={(e) => setKeyword(e.target.value)}/>
-                {/* <div
-                    className={'searchButton'}
-                    onClick={() => {searchUser(keyword)}}>
-                    <FaSearch/>
-                </div> */}
                 {showSearchResult && <SearchUserResult searchResult={searchResult} doneSearching={doneSearching} onApply={onApply} clickInstruction={clickInstruction} closeSearchResult={closeSearchResult} />}
             </div>
         </>

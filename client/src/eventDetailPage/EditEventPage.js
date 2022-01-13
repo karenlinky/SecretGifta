@@ -10,7 +10,7 @@ import * as Yup from "yup";
 import EditEventForm from './EditEventForm';
 import './eventDetailPage.css'
 import { messages } from './messages'
-import { checkExpired } from '../helper'
+import { checkExpired } from '../loginAndRegister/helper'
 import { pageLinkConstants } from '../constants/pageLinkConstants'
 
 const eventSchema = Yup.object({

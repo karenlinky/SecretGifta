@@ -1,11 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import EventListDetailCard from './EventListDetailCard'
 import EventListAddCard from './EventListAddCard';
-import { checkExpired } from '../helper'
+import { checkExpired } from '../loginAndRegister/helper'
 import { useNavigate } from 'react-router-dom';
 import { pageLinkConstants } from '../constants/pageLinkConstants';
+import { AppContext } from '../AppContext'
+import { messages as generalMessages } from '../messages'
+import { modalConstants } from '../functionalComponents/modal/modalConstants'
 
 const EventList = () => {
+    
+    const { setOpenModal, setModalType, setModalContent } = useContext(AppContext);
 
     const navigate = useNavigate();
 
@@ -32,9 +37,9 @@ const EventList = () => {
             }
             setEventList(data.events);
         }).catch(err => {
-            // setOpenModal(true);
-            // setModalType(modalConstants.ERROR);
-            // setModalContent(generalMessages.generalTryAgainError);
+            setOpenModal(true);
+            setModalType(modalConstants.ERROR);
+            setModalContent(generalMessages.generalTryAgainError);
         })
     }
     useEffect(() => {
