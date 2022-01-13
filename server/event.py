@@ -130,34 +130,6 @@ class Event:
         events_result = []
         for event in events:
             events_result.append(self.form_event(event, requester_id))
-            # event_id = event[0]
-            # event_result = {}
-            # event_result["id"] = event_id
-            # event_result["name"] = event[1]
-            # event_result["date"] = event[2]
-            # event_result["min"] = event[3]
-            # event_result["max"] = event[4]
-            # event_result['giftas'] = []
-            # participants_ids = self.giftas_queries.get_gifta_id(event_id, requester_id)
-            # for participants_id in participants_ids:
-            #     id = participants_id[0]
-            #     participants_info = {}
-            #     participants_id_name = self.user_queries.search_user_by_id(id)
-            #     participants_info['id'] = id
-            #     participants_info['username'] = participants_id_name[0][1]
-            #     event_result['giftas'].append(participants_info)
-
-            # event_result['giftee'] = []
-            # giftee_ids = self.giftas_queries.get_giftee_id(event_id, requester_id)
-            # for giftee_id in giftee_ids:
-            #     id = giftee_id[0]
-            #     giftee_info = {}
-            #     giftee_id_name = self.user_queries.search_user_by_id(id)
-            #     giftee_info['id'] = id
-            #     giftee_info['username'] = giftee_id_name[0][1]
-            #     event_result['giftee'].append(giftee_info)
-                
-            # events_result.append(event_result)
 
         return {"events": events_result}
 
