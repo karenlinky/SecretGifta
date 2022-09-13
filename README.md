@@ -22,10 +22,10 @@ This application uses Formik and Yup to validate user inputs for the register/lo
 
 A user-searcher is implemented to assist users while searching for other users. This allow users to search for the others without having to memorize their full username. ![](screenshots/userSearcher.png)
 
-## Features in progress
+<!-- ## Features in progress
+
 1. friend
    - allow users to connect with other users to form a "friend" relation
    - allow users to create events with other users only if they are "friends"
 2. self introduction and wishlist
-   - allow users to share some facts about themselves, so users who need to give them gifts will have an idea about what type of gifts to get them
-
+   - allow users to share some facts about themselves, so users who need to give them gifts will have an idea about what type of gifts to get them -->
